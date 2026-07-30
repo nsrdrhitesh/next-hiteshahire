@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Quill editor custom styles */
+.quill-editor-container .ql-container {
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.quill-editor-container .ql-editor {
+  min-height: 200px;
+  padding: 16px;
+}
+
+.quill-editor-container .ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+  left: 16px;
+  right: 16px;
+}
+
+.quill-editor-container .ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-color: #e5e7eb;
+}
+
+.quill-editor-container .ql-container {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-color: #e5e7eb;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .quill-editor-container .ql-toolbar {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  .quill-editor-container .ql-container {
+    background-color: #111827;
+    border-color: #374151;
+    color: #f3f4f6;
+  }
+  
+  .quill-editor-container .ql-editor.ql-blank::before {
+    color: #6b7280;
+  }
+}
+
+.PhoneInput {
+  display: flex;
+  align-items: center;
+}
+
+.PhoneInputInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
