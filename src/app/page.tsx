@@ -15,7 +15,7 @@ export default function Home() {
     // Navigate to admin login page
     router.push('/admin/login');
   };
-  
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 via-white to-blue-50 font-sans dark:from-gray-900 dark:via-black dark:to-gray-900">
       <main className="flex min-h-screen w-full max-w-4xl flex-col items-center justify-between py-20 px-6 sm:px-16">
@@ -43,7 +43,7 @@ export default function Home() {
               <h1 className="relative text-4xl font-bold leading-tight text-gray-900 dark:text-white sm:text-5xl">
                 Welcome to{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                  Advance Admin Panel
+                  Advance Admin Panel 001
                 </span>
               </h1>
             </div>
@@ -62,7 +62,7 @@ export default function Home() {
             {/* User Login Card */}
             <div className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:border-zinc-800 dark:bg-gray-900">
               <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-100 opacity-20 transition-all duration-500 group-hover:scale-150 group-hover:opacity-30 dark:bg-blue-900"></div>
-              
+
               <div className="relative z-10">
                 <div className="mb-6 flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/30">
@@ -72,18 +72,18 @@ export default function Home() {
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">User Login</h2>
                 </div>
-                
+
                 <p className="mb-8 text-zinc-600 dark:text-zinc-300">
                   Access your personal documents, collaborate with team members, and manage your workspace.
                 </p>
-                
-                <button 
+
+                <button
                   onClick={handleUserLogin}
                   className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 px-6 py-4 font-semibold text-white transition-all duration-300 hover:from-blue-600 hover:to-cyan-500 hover:shadow-lg active:scale-95"
                 >
                   Sign In as User
                 </button>
-                
+
                 <div className="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -96,7 +96,7 @@ export default function Home() {
             {/* Admin Login Card */}
             <div className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:border-zinc-800 dark:bg-gray-900">
               <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-purple-100 opacity-20 transition-all duration-500 group-hover:scale-150 group-hover:opacity-30 dark:bg-purple-900"></div>
-              
+
               <div className="relative z-10">
                 <div className="mb-6 flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-900/30">
@@ -107,18 +107,18 @@ export default function Home() {
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Login</h2>
                 </div>
-                
+
                 <p className="mb-8 text-zinc-600 dark:text-zinc-300">
                   Manage system settings, user permissions, audit logs, and oversee the entire document management system.
                 </p>
-                
-                <button 
+
+                <button
                   onClick={handleAdminLogin}
                   className="w-full rounded-xl bg-gradient-to-r from-purple-500 to-pink-400 px-6 py-4 font-semibold text-white transition-all duration-300 hover:from-purple-600 hover:to-pink-500 hover:shadow-lg active:scale-95"
                 >
                   Sign In as Admin
                 </button>
-                
+
                 <div className="mt-6 flex items-center justify-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -142,22 +142,22 @@ export default function Home() {
               Need help accessing your account?
             </p>
             <div className="flex gap-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 Reset Password
               </a>
               <span className="text-zinc-300 dark:text-zinc-700">•</span>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 Contact Support
               </a>
               <span className="text-zinc-300 dark:text-zinc-700">•</span>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 System Status
