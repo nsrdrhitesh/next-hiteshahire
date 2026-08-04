@@ -1,6 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ElementType,
+  type ForwardRefExoticComponent,
+  type HTMLAttributes,
+  type ReactNode,
+  type RefAttributes,
+} from "react";
 
 export default function Reveal({
   children,
@@ -15,6 +24,12 @@ export default function Reveal({
 }) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
+  // `Tag` is dynamic (div, article, ...), so its exact prop/ref type can't be
+  // known statically. Casting once here keeps the component honestly typed
+  // everywhere else instead of suppressing an error at the call site.
+  const DynamicTag = Tag as unknown as ForwardRefExoticComponent<
+    HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement>
+  >;
 
   useEffect(() => {
     const node = ref.current;
@@ -35,15 +50,14 @@ export default function Reveal({
   }, []);
 
   return (
-    <Tag
-      // @ts-expect-error -- ref type varies with the dynamic tag
+    <DynamicTag
       ref={ref}
       data-reveal
-      data-visible={visible}
+      data-visible={visible ? "true" : "false"}
       style={{ transitionDelay: `${delay}ms` }}
       className={className}
     >
       {children}
-    </Tag>
+    </DynamicTag>
   );
 }
