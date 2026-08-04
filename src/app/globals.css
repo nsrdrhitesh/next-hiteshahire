@@ -1,89 +1,159 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0a0e14;
+  --ink-soft: #10151d;
+  --ink-elevated: #141a24;
+  --paper: #eceef2;
+  --paper-dim: #9aa3b2;
+  --paper-faint: #626c7d;
+  --line: rgba(236, 238, 242, 0.09);
+  --line-strong: rgba(236, 238, 242, 0.16);
+  --signal: #ffb020;
+  --signal-soft: rgba(255, 176, 32, 0.12);
+  --circuit: #33e0c0;
+  --circuit-soft: rgba(51, 224, 192, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-elevated: var(--ink-elevated);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-paper-faint: var(--paper-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-circuit: var(--circuit);
+  --color-circuit-soft: var(--circuit-soft);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Quill editor custom styles */
-.quill-editor-container .ql-container {
-  min-height: 200px;
-  max-height: 500px;
-  overflow-y: auto;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+::selection {
+  background: var(--signal);
+  color: var(--ink);
 }
 
-.quill-editor-container .ql-editor {
-  min-height: 200px;
-  padding: 16px;
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--signal);
 }
 
-.quill-editor-container .ql-editor.ql-blank::before {
-  color: #9ca3af;
-  font-style: normal;
-  left: 16px;
-  right: 16px;
+/* Blueprint grid backdrop */
+.blueprint-grid {
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
-.quill-editor-container .ql-toolbar {
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  border-color: #e5e7eb;
+.blueprint-grid-fine {
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 18px 18px;
 }
 
-.quill-editor-container .ql-container {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  border-color: #e5e7eb;
+.text-balance {
+  text-wrap: balance;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .quill-editor-container .ql-toolbar {
-    background-color: #1f2937;
-    border-color: #374151;
+/* Reveal-on-scroll (driven by IntersectionObserver toggling data-visible) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  
-  .quill-editor-container .ql-container {
-    background-color: #111827;
-    border-color: #374151;
-    color: #f3f4f6;
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
-  
-  .quill-editor-container .ql-editor.ql-blank::before {
-    color: #6b7280;
+  .animate-signal,
+  .animate-pulse-slow,
+  .animate-marquee {
+    animation: none !important;
   }
 }
 
-.PhoneInput {
-  display: flex;
-  align-items: center;
+/* Signal traveling along circuit paths */
+@keyframes signal-dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-signal {
+  stroke-dasharray: 6 10;
+  stroke-dashoffset: 400;
+  animation: signal-dash 18s linear infinite;
 }
 
-.PhoneInputInput {
-  border: none;
-  outline: none;
-  background: transparent;
-  width: 100%;
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
