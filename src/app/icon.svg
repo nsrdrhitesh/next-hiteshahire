@@ -1,0 +1,8 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="#0a0e14"/>
+  <circle cx="32" cy="32" r="24" fill="#141a24" stroke="#ffb020" stroke-width="2"/>
+  <circle cx="32" cy="32" r="24" fill="#ffb020" opacity="0.12"/>
+  <circle cx="32" cy="10.5" r="3" fill="#33e0c0"/>
+  <line x1="32" y1="13" x2="32" y2="20" stroke="#33e0c0" stroke-width="1.6" opacity="0.7"/>
+  <text x="32" y="39" text-anchor="middle" font-family="Space Grotesk, Arial, sans-serif" font-size="20" font-weight="700" fill="#eceef2">HA</text>
+</svg>
