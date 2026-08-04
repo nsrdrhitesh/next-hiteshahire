@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hitesh Ahire — Portfolio (Next.js 15 / TypeScript / Tailwind v4)
 
-## Getting Started
-
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Before you deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Resume** — drop your real PDF at `public/resume.pdf` (the Navbar and Hero
+   "Download Resume" buttons already link to it).
+2. **OG image** — add a 1200×630 image at `public/og-image.png` for social
+   share previews (LinkedIn, Twitter/X, WhatsApp link unfurls).
+3. **Domain** — `profile.site` in `src/lib/data.ts` is set to
+   `https://hiteshahire.in`. Update it if that changes, since metadata,
+   the sitemap, and the JSON-LD schema all read from it.
+4. **Content** — every section pulls from `src/lib/data.ts`. Edit that one
+   file to update experience, projects, skills, or contact details — no
+   need to touch the components.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/            route-level files: layout, page, sitemap, robots, loading, 404
+  components/     one file per section (Hero, About, Experience, ...)
+  components/ui/  small shared primitives (Reveal, SectionHeading)
+  lib/data.ts     all resume content — the only file you should need to edit often
+public/
+  resume.pdf      <- add your resume here
+  og-image.png    <- add a 1200x630 share image here
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Dark "blueprint" theme (ink navy + amber signal + circuit teal) instead of
+  the generic light-glassmorphism-blue look most AI-generated portfolios
+  default to — chosen to read as "systems engineer," matching the
+  government/infra work in the resume.
+- The hero graphic is a hand-built SVG system diagram (Next.js → NestJS →
+  Laravel → MySQL → Payments, wired through a central node), not a stock
+  particle animation.
+- Scroll reveals use a tiny IntersectionObserver-based component
+  (`components/ui/Reveal.tsx`) — no animation library dependency, respects
+  `prefers-reduced-motion`.
+- Fully keyboard-navigable with visible focus states; Lighthouse-friendly
+  (no client JS on the SVG diagram, fonts loaded via `next/font`, images
+  ready for `next/image` if you add real project screenshots).
 
-## Deploy on Vercel
+## Want more?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Natural next steps if you want to keep going: swap the project cards' text
+icons for real screenshots via `next/image`, add a light-mode toggle, wire
+the contact section to a real form (Resend/Formspree), or add an MDX-backed
+blog route that pulls your SustainixSH posts.
